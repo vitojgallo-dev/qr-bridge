@@ -6,7 +6,6 @@
 <title>TheAppAI — QR Bridge</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: #0f0f13;
@@ -17,196 +16,71 @@
     align-items: center;
     padding: 24px 16px;
   }
-
-  h1 {
-    font-size: 20px;
-    font-weight: 500;
-    color: #fff;
-    margin-bottom: 4px;
-    letter-spacing: -0.3px;
-  }
-
-  .subtitle {
-    font-size: 13px;
-    color: #888;
-    margin-bottom: 28px;
-    text-align: center;
-  }
-
+  h1 { font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 28px; text-align: center; }
   .card {
-    background: #1a1a22;
-    border: 0.5px solid #2e2e3a;
-    border-radius: 16px;
-    padding: 20px;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 16px;
+    background: #1a1a22; border: 0.5px solid #2e2e3a;
+    border-radius: 16px; padding: 20px;
+    width: 100%; max-width: 400px; margin-bottom: 16px;
   }
-
   .card-title {
-    font-size: 11px;
-    font-weight: 500;
-    color: #666;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+    font-size: 11px; font-weight: 500; color: #666;
+    letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 12px;
   }
-
-  label {
-    display: block;
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 4px;
-    margin-top: 12px;
-  }
-
+  label { display: block; font-size: 12px; color: #888; margin-bottom: 4px; margin-top: 12px; }
   label:first-of-type { margin-top: 0; }
-
   input[type="text"], input[type="password"] {
-    width: 100%;
-    background: #0f0f13;
-    border: 0.5px solid #2e2e3a;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 13px;
-    color: #e8e8e8;
-    outline: none;
-    transition: border-color 0.15s;
+    width: 100%; background: #0f0f13; border: 0.5px solid #2e2e3a;
+    border-radius: 8px; padding: 10px 12px; font-size: 13px;
+    color: #e8e8e8; outline: none; transition: border-color 0.15s;
   }
-
-  input[type="text"]:focus, input[type="password"]:focus {
-    border-color: #4f6ef7;
-  }
-
+  input:focus { border-color: #4f6ef7; }
   .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 13px;
-    border-radius: 10px;
-    border: none;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; width: 100%; padding: 13px; border-radius: 10px;
+    border: none; font-size: 15px; font-weight: 500;
+    cursor: pointer; transition: opacity 0.15s, transform 0.1s;
   }
-
   .btn:active { transform: scale(0.98); opacity: 0.85; }
-
-  .btn-primary {
-    background: #4f6ef7;
-    color: #fff;
-  }
-
+  .btn-primary { background: #4f6ef7; color: #fff; }
   .btn-scan {
-    background: #1a1a22;
-    border: 0.5px solid #2e2e3a;
-    color: #e8e8e8;
-    margin-bottom: 12px;
+    background: #1a1a22; border: 0.5px solid #2e2e3a;
+    color: #e8e8e8; margin-bottom: 12px;
   }
-
-  .btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
   #video-container {
-    display: none;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 16px;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 0.5px solid #2e2e3a;
-    position: relative;
-    background: #000;
+    display: none; width: 100%; max-width: 400px;
+    margin-bottom: 16px; border-radius: 16px; overflow: hidden;
+    border: 0.5px solid #2e2e3a; position: relative; background: #000;
   }
-
-  #video {
-    width: 100%;
-    display: block;
-  }
-
+  #video { width: 100%; display: block; }
   .scan-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
+    position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center; pointer-events: none;
   }
-
   .scan-frame {
-    width: 200px;
-    height: 200px;
-    border: 2px solid #4f6ef7;
-    border-radius: 12px;
-    opacity: 0.7;
+    width: 200px; height: 200px;
+    border: 2px solid #4f6ef7; border-radius: 12px; opacity: 0.8;
   }
-
   .scan-label {
-    position: absolute;
-    bottom: 14px;
-    left: 0; right: 0;
-    text-align: center;
-    font-size: 12px;
-    color: #fff;
-    background: rgba(0,0,0,0.5);
-    padding: 4px 0;
+    position: absolute; bottom: 14px; left: 0; right: 0;
+    text-align: center; font-size: 12px; color: #fff;
+    background: rgba(0,0,0,0.5); padding: 4px 0;
   }
-
   .status-box {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    font-size: 13px;
-    text-align: center;
-    display: none;
-    margin-bottom: 16px;
+    width: 100%; max-width: 400px; padding: 12px 16px;
+    border-radius: 10px; font-size: 13px; text-align: center;
+    display: none; margin-bottom: 16px;
   }
-
-  .status-success {
-    background: #0d2a1a;
-    border: 0.5px solid #1a5c34;
-    color: #4ade80;
-  }
-
-  .status-error {
-    background: #2a0d0d;
-    border: 0.5px solid #5c1a1a;
-    color: #f87171;
-  }
-
-  .status-info {
-    background: #0d1a2a;
-    border: 0.5px solid #1a3a5c;
-    color: #60a5fa;
-  }
-
+  .status-success { background: #0d2a1a; border: 0.5px solid #1a5c34; color: #4ade80; }
+  .status-error   { background: #2a0d0d; border: 0.5px solid #5c1a1a; color: #f87171; }
+  .status-info    { background: #0d1a2a; border: 0.5px solid #1a3a5c; color: #60a5fa; }
   .divider {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 4px 0 16px;
+    width: 100%; max-width: 400px;
+    display: flex; align-items: center; gap: 10px; margin: 4px 0 16px;
   }
-
-  .divider-line {
-    flex: 1;
-    height: 0.5px;
-    background: #2e2e3a;
-  }
-
-  .divider-text {
-    font-size: 11px;
-    color: #555;
-  }
-
-  #canvas { display: none; }
+  .divider-line { flex: 1; height: 0.5px; background: #2e2e3a; }
+  .divider-text { font-size: 11px; color: #555; }
 </style>
 </head>
 <body>
@@ -214,11 +88,12 @@
 <h1>TheAppAI</h1>
 <p class="subtitle">Scansiona il QR code per sincronizzare il totem</p>
 
-<div class="card" id="config-card">
+<div class="card">
   <div class="card-title">Configurazione WebPubSub</div>
   <label>Connection String</label>
   <input type="password" id="connStr"
-   value="Endpoint=https://theappxr.webpubsub.azure.com;AccessKey=aC6XttvKk8Tn6l+N453CUUf/inhqTIZgm7Z+e2Rm0DI=;Version=1.0;">
+    placeholder="Endpoint=https://....webpubsub.azure.com;AccessKey=...;Version=1.0;"
+    value="Endpoint=https://theappxr.webpubsub.azure.com;AccessKey=aC6XttvKk8Tn6l+N453CUUf/inhqTIZgm7Z+e2Rm0DI=;Version=1.0;">
   <label>Hub</label>
   <input type="text" id="hub" value="totem">
   <label>Gruppo</label>
@@ -229,7 +104,6 @@
 
 <div id="video-container">
   <video id="video" autoplay playsinline muted></video>
-  <canvas id="canvas"></canvas>
   <div class="scan-overlay">
     <div class="scan-frame"></div>
     <div class="scan-label">Inquadra il QR code</div>
@@ -237,14 +111,7 @@
 </div>
 
 <div style="width:100%;max-width:400px;">
-  <button class="btn btn-scan" id="btn-scan" onclick="startScan()">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/>
-      <rect x="7" y="7" width="4" height="4" rx="1"/>
-      <rect x="13" y="7" width="4" height="4" rx="1"/>
-      <rect x="7" y="13" width="4" height="4" rx="1"/>
-      <path d="M13 13h1v1M15 15h2v2M13 17h2M17 13v2"/>
-    </svg>
+  <button class="btn btn-scan" id="btn-scan" onclick="toggleScan()">
     Scansiona QR code
   </button>
 
@@ -262,90 +129,30 @@
     <input type="text" id="manualGuideId" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
   </div>
 
-  <button class="btn btn-primary" id="btn-send" onclick="sendManual()">
-    Invia al totem
-  </button>
+  <button class="btn btn-primary" onclick="sendManual()">Invia al totem</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.19.1/umd/index.min.js"></script>
 <script>
-let stream = null;
-let scanInterval = null;
-let scanning = false;
+let codeReader = null;
+let scanning   = false;
 
 function showStatus(msg, type) {
   const box = document.getElementById('status-box');
   box.textContent = msg;
-  box.className = 'status-box status-' + type;
+  box.className   = 'status-box status-' + type;
   box.style.display = 'block';
 }
 
 function parseConnString(str) {
-  const endpoint = str.match(/Endpoint=([^;]+)/)?.[1]?.replace('https://', 'wss://').replace(/\/$/, '');
+  const endpoint = str.match(/Endpoint=([^;]+)/)?.[1]
+    ?.replace('https://', 'wss://').replace(/\/$/, '');
   const key = str.match(/AccessKey=([^;]+)/)?.[1];
   return { endpoint, key };
 }
 
-async function sendToWebPubSub(projectId, guideId) {
-  const connStr = document.getElementById('connStr').value.trim();
-  const hub     = document.getElementById('hub').value.trim() || 'totem';
-  const group   = document.getElementById('group').value.trim() || 'totem-001';
-
-  if (!connStr || connStr.includes('NOME') || connStr.includes('CHIAVE')) {
-    showStatus('Inserisci la Connection String WebPubSub nella configurazione.', 'error');
-    return false;
-  }
-
-  const { endpoint, key } = parseConnString(connStr);
-  if (!endpoint || !key) {
-    showStatus('Connection String non valida. Verifica il formato.', 'error');
-    return false;
-  }
-
-  showStatus('Connessione a WebPubSub...', 'info');
-
-  try {
-    const wsUrl = `${endpoint}/client/hubs/${hub}?access_token=${key}`;
-    const ws = new WebSocket(wsUrl);
-
-    await new Promise((resolve, reject) => {
-      ws.onopen = resolve;
-      ws.onerror = () => reject(new Error('Connessione fallita'));
-      setTimeout(() => reject(new Error('Timeout connessione')), 5000);
-    });
-
-    // Prima entra nel gruppo
-    ws.send(JSON.stringify({ type: 'joinGroup', group: group }));
-    await new Promise(r => setTimeout(r, 300));
-
-    // Invia il comando set_project
-    const payload = JSON.stringify({
-      type: 'set_project',
-      data: JSON.stringify({ projectId, guideId })
-    });
-
-    ws.send(JSON.stringify({
-      type: 'sendToGroup',
-      group: group,
-      data: payload,
-      dataType: 'text'
-    }));
-
-    await new Promise(r => setTimeout(r, 300));
-    ws.close();
-
-    showStatus('Totem sincronizzato! ProjectId: ' + projectId.substring(0,8) + '...', 'success');
-    return true;
-  } catch (e) {
-    showStatus('Errore: ' + e.message, 'error');
-    return false;
-  }
-}
-
 function parseQrData(text) {
   text = text.trim();
-
-  // Formato JSON
   if (text.startsWith('{')) {
     try {
       const obj = JSON.parse(text);
@@ -353,87 +160,112 @@ function parseQrData(text) {
         return { projectId: obj.projectId, guideId: obj.guideId };
     } catch(e) {}
   }
-
-  // Formato pipe
   if (text.includes('|')) {
     const parts = text.split('|');
     if (parts.length >= 2)
       return { projectId: parts[0].trim(), guideId: parts[1].trim() };
   }
-
   return null;
 }
 
-async function startScan() {
-  if (scanning) {
-    stopScan();
+async function sendToWebPubSub(projectId, guideId) {
+  const connStr = document.getElementById('connStr').value.trim();
+  const hub     = document.getElementById('hub').value.trim()   || 'totem';
+  const group   = document.getElementById('group').value.trim() || 'totem-001';
+  const { endpoint, key } = parseConnString(connStr);
+
+  if (!endpoint || !key) {
+    showStatus('Connection String non valida.', 'error');
     return;
   }
 
+  showStatus('Connessione a WebPubSub...', 'info');
+
   try {
-    stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } }
+    const ws = new WebSocket(`${endpoint}/client/hubs/${hub}?access_token=${key}`);
+
+    await new Promise((res, rej) => {
+      ws.onopen  = res;
+      ws.onerror = () => rej(new Error('Connessione fallita'));
+      setTimeout(() => rej(new Error('Timeout')), 6000);
     });
-    const video = document.getElementById('video');
-    video.srcObject = stream;
+
+    ws.send(JSON.stringify({ type: 'joinGroup', group }));
+    await new Promise(r => setTimeout(r, 400));
+
+    ws.send(JSON.stringify({
+      type:     'sendToGroup',
+      group,
+      data:     JSON.stringify({ type: 'set_project', data: JSON.stringify({ projectId, guideId }) }),
+      dataType: 'text'
+    }));
+
+    await new Promise(r => setTimeout(r, 400));
+    ws.close();
+
+    showStatus('Totem sincronizzato! ' + projectId.substring(0, 8) + '...', 'success');
+  } catch(e) {
+    showStatus('Errore: ' + e.message, 'error');
+  }
+}
+
+function toggleScan() {
+  if (scanning) { stopScan(); } else { startScan(); }
+}
+
+async function startScan() {
+  try {
+    codeReader = new ZXing.BrowserMultiFormatReader();
+    const devices = await ZXing.BrowserMultiFormatReader.listVideoInputDevices();
+
+    // Preferisce la camera posteriore
+    const device = devices.find(d =>
+      d.label.toLowerCase().includes('back') ||
+      d.label.toLowerCase().includes('rear') ||
+      d.label.toLowerCase().includes('environment')
+    ) || devices[devices.length - 1];
+
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('btn-scan').textContent = 'Ferma scansione';
     scanning = true;
     showStatus('Camera attiva — inquadra il QR code', 'info');
-    scanInterval = setInterval(processFrame, 200);
+
+    await codeReader.decodeFromVideoDevice(
+      device?.deviceId || undefined,
+      'video',
+      (result, err) => {
+        if (result) {
+          const parsed = parseQrData(result.getText());
+          if (parsed) {
+            stopScan();
+            document.getElementById('manualProjectId').value = parsed.projectId;
+            document.getElementById('manualGuideId').value   = parsed.guideId;
+            showStatus('QR letto! Invio al totem...', 'info');
+            sendToWebPubSub(parsed.projectId, parsed.guideId);
+          }
+        }
+      }
+    );
   } catch(e) {
-    showStatus('Impossibile accedere alla camera: ' + e.message, 'error');
+    showStatus('Errore camera: ' + e.message, 'error');
+    scanning = false;
   }
 }
 
 function stopScan() {
-  if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-  if (scanInterval) { clearInterval(scanInterval); scanInterval = null; }
+  if (codeReader) { codeReader.reset(); codeReader = null; }
   document.getElementById('video-container').style.display = 'none';
-  document.getElementById('btn-scan').innerHTML = `
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/>
-      <rect x="7" y="7" width="4" height="4" rx="1"/><rect x="13" y="7" width="4" height="4" rx="1"/>
-      <rect x="7" y="13" width="4" height="4" rx="1"/>
-      <path d="M13 13h1v1M15 15h2v2M13 17h2M17 13v2"/>
-    </svg> Scansiona QR code`;
+  document.getElementById('btn-scan').textContent = 'Scansiona QR code';
   scanning = false;
-}
-
-function processFrame() {
-  const video  = document.getElementById('video');
-  const canvas = document.getElementById('canvas');
-  if (!video.videoWidth) return;
-
-  canvas.width  = video.videoWidth;
-  canvas.height = video.videoHeight;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(video, 0, 0);
-
-  const img  = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const code = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
-
-  if (code && code.data) {
-    const parsed = parseQrData(code.data);
-    if (parsed) {
-      stopScan();
-      document.getElementById('manualProjectId').value = parsed.projectId;
-      document.getElementById('manualGuideId').value   = parsed.guideId;
-      showStatus('QR letto! Invio al totem...', 'info');
-      sendToWebPubSub(parsed.projectId, parsed.guideId);
-    }
-  }
 }
 
 async function sendManual() {
   const projectId = document.getElementById('manualProjectId').value.trim();
   const guideId   = document.getElementById('manualGuideId').value.trim();
-
   if (!projectId || !guideId) {
     showStatus('Inserisci sia Project ID che Guide ID.', 'error');
     return;
   }
-
   await sendToWebPubSub(projectId, guideId);
 }
 </script>
