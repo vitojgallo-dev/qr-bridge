@@ -234,17 +234,36 @@ function toggleScan() { scanning ? stopScan() : startScan(); }
 async function startScan() {
   try {
     codeReader = new ZXing.BrowserMultiFormatReader();
-    const devices = await ZXing.BrowserMultiFormatReader.listVideoInputDevices();
-    const device = devices.find(d =>
-      /back|rear|environment/i.test(d.label)
-    ) || devices[devices.length - 1];
+
+    // Prova a listare le camere; il nome del metodo varia tra versioni ZXing
+    let devices = [];
+    try {
+      if (typeof codeReader.listVideoInputDevices === 'function') {
+        devices = await codeReader.listVideoInputDevices();
+      } else if (typeof ZXing.BrowserCodeReader?.listVideoInputDevices === 'function') {
+        devices = await ZXing.BrowserCodeReader.listVideoInputDevices();
+      } else if (navigator.mediaDevices?.enumerateDevices) {
+        const all = await navigator.mediaDevices.enumerateDevices();
+        devices = all.filter(d => d.kind === 'videoinput');
+      }
+    } catch (e) {
+      console.warn('Lista camere non disponibile, uso camera di default', e);
+    }
+
+    // Seleziona camera posteriore se disponibile
+    let deviceId = undefined;
+    if (devices.length > 0) {
+      const back = devices.find(d => /back|rear|environment/i.test(d.label));
+      deviceId = (back || devices[devices.length - 1]).deviceId;
+    }
 
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('btn-scan').textContent = 'Ferma scansione';
     scanning = true;
     showStatus('Camera attiva — inquadra il QR code', 'info');
 
-    await codeReader.decodeFromVideoDevice(device?.deviceId, 'video', (result) => {
+    // Se non abbiamo un deviceId, passiamo null → ZXing usa la camera di default
+    await codeReader.decodeFromVideoDevice(deviceId || null, 'video', (result) => {
       if (result) {
         const parsed = parseQrData(result.getText());
         if (parsed) {
